@@ -1,0 +1,215 @@
+{% extends 'data/base.html' %}
+{% load static %}
+
+{% block pagestyles %}
+<link href="{% static 'assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css' %}" rel="stylesheet"
+    type="text/css" />
+<link href="{% static 'assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css' %}"
+    rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css' %}" rel="stylesheet"
+    type="text/css" />
+<link href="{% static 'assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' %}"
+    rel="stylesheet" type="text/css" />
+{% endblock pagestyles %}0
+
+{% block headerpageplugins %}
+<!-- BEGIN PAGE LEVEL STYLES -->
+<link href="{% static 'assets/pages/css/profile.min.css' %}" rel="stylesheet" type="text/css" />
+<!-- END PAGE LEVEL STYLES -->
+{% endblock headerpageplugins %}
+
+
+{% block content %}
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+
+        <!-- BEGIN PAGE HEADER-->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN PROFILE SIDEBAR -->
+                <div class="profile-sidebar">
+                    <!-- PORTLET MAIN -->
+                    <div class="portlet light profile-sidebar-portlet ">
+                        <!-- SIDEBAR USERPIC -->
+                        <div class="profile-userpic">
+                            <img src="/static/assets/pages/media/profile/profile_user.jpg" class="img-responsive"
+                                alt=""> </div>
+                        <!-- END SIDEBAR USERPIC -->
+                        <!-- SIDEBAR USER TITLE -->
+                        <div class="profile-usertitle">
+                            <div class="profile-usertitle-name"> {{user.username}}</div>
+                            <div class="profile-usertitle-job">{{userprofile.firstname}} </div>
+                        </div>
+                        <!-- END SIDEBAR USER TITLE -->
+
+                    </div>
+                    <!-- END PORTLET MAIN -->
+                </div>
+                <!-- END BEGIN PROFILE SIDEBAR -->
+
+                <!-- BEGIN PROFILE CONTENT -->
+                <div class="profile-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="portlet light ">
+                                <div class="portlet-title tabbable-line">
+                                    <div class="caption caption-md">
+                                        <i class="icon-globe theme-font hide"></i>
+                                        <span class="caption-subject font-blue-madison bold uppercase">Profile
+                                            Account</span>
+                                    </div>
+                                    <ul class="nav nav-tabs">
+                                        <li class="active">
+                                            <a href="#tab_1_1" data-toggle="tab">Personal Info</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#tab_1_3" data-toggle="tab">Change Password</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="tab-content">
+                                        <!-- PERSONAL INFO TAB -->
+                                        <div class="tab-pane active" id="tab_1_1">
+                                            <form role="form" method="POST" id='form_profile' action="{% url 'users:editprofile' %}">
+                                                {% csrf_token %}
+                                                <input type="text" hidden value="1" name="form_id">
+                                                <div class="form-group">
+                                                    <label class="control-label">{{form1.rank.label}}</label>
+                                                    {{form1.rank}}</div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label">{{form1.firstname.label}}</label>
+                                                    {{form1.firstname}}</div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label">{{form1.lastname.label}}</label>
+                                                    {{form1.lastname}} </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label">{{form1.personal_number.label}}</label>
+                                                    {{form1.personal_number}} </div>
+                                                <div class="form-group">
+                                                    <label class="control-label"> {{form1.section.label}}</label>
+                                                    {{form1.section}} </div>
+
+
+                                                <div class="form-group">
+                                                    <div class="input-group date form_datetime implabel"
+                                                        id="div_ship_joining_date">
+                                                        <div class='row'>
+                                                            <div class='col-md-12'>
+                                                                <label class="form_control_1">Ship Joining Date</label>
+                                                            </div>
+                                                            <div class='col-md-8'>
+                                                                {{form1.ship_joining_date}}
+                                                            </div>
+                                                            <div class='col-md-4'>
+                                                                <span class="input-group-btn">
+                                                                    <button style='margin-left: -30px;'
+                                                                        class="btn default date-reset" type="button">
+                                                                        <i class="fa fa-times"></i>
+                                                                    </button>
+                                                                    <button style='margin-left: 0px;'
+                                                                        class="btn default date-set" type="button">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group form-md-line-input ">
+                                                        <span class="help-block" id="span_ship_joining_date"
+                                                            style="color: #36c6d3; opacity: 1; margin-top: -30px;">Enter
+                                                            Ship Joining
+                                                            Date...</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form_control_1 control-label">Remarks </label>
+                                                    {{form1.remarks}}
+                                                </div>
+
+                                                <div class="margiv-top-10">
+                                                    <a href="javascript:;" id='btn_save_changes' class="btn green"> Save
+                                                        Changes </a>
+                                                    <a href="javascript:;" id='button_cancel' class="btn default">
+                                                        Cancel </a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <!-- END PERSONAL INFO TAB -->
+
+                                        <!-- CHANGE PASSWORD TAB -->
+                                        <div class="tab-pane" id="tab_1_3">
+                                            <form role="form" method="POST" id='form_password'
+                                                action="{% url 'users:editprofile' %}">
+                                                {% csrf_token %}
+                                                <input type="text" hidden value="2" name="form_id">
+                                                <div class="form-group">
+                                                    <label class="control-label">{{form2.old_password.label}}</label>
+                                                    {{form2.old_password}} </div>
+                                                <div class="form-group">
+                                                    <label class="control-label">{{form2.password1.label}}</label>
+                                                    {{form2.password1}} </div>
+                                                <div class="form-group">
+                                                    <label class="control-label">{{form2.password2.label}}</label>
+                                                    {{form2.password2}} </div>
+                                                <div class="control-label" id="password_error">
+                                                </div>
+                                                <div class="margin-top-10">
+                                                <a href="javascript:;" id='btn_change_password' class="btn green">
+                                                Change Password </a>
+                                                <a href="javascript:;" id='btn_cancel_password' class="btn default">
+                                                Cancel </a>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                    <!-- END CHANGE PASSWORD TAB -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PROFILE CONTENT -->
+        </div>
+    </div>
+</div>
+<!-- END CONTENT BODY -->
+</div>
+<!-- END CONTENT -->
+
+
+{% endblock content %}
+{% block footerpageplugins %}
+<script src="{% static 'assets/global/plugins/moment.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js' %}"
+    type="text/javascript"></script>
+<script src="{% static 'assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"
+    type="text/javascript"></script>
+<script src="{% static 'assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js' %}"
+    type="text/javascript"></script>
+<script src="{% static 'assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js' %}"
+    type="text/javascript"></script>
+<script src="{% static 'assets/global/plugins/jquery.sparkline.min.js' %}" type="text/javascript"></script>
+{% endblock footerpageplugins %}
+
+
+{% block pagescripts %}
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script>
+    var url_editprofile = "{% url 'users:editprofile' %}";
+    var csrfmiddlewaretoken = "{{ csrf_token }}";
+</script>
+<script src="{% static 'assets/pages/scripts/profile.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/pages/scripts/components-date-time-pickers.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'users/js/edit_profile.js' %}" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+{% endblock pagescripts %}

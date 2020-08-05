@@ -1,0 +1,34 @@
+-install git
+
+
+git config --global user.name "mahesh20shashank"
+git config --global user.email "mahesh20yadav@gmail.com"  
+
+-take promt to  the folder where u have data to be uploaded in cmd 
+
+
+git init
+
+git add .
+
+git commit -m "Mahesh first commit"
+
+--finally to push data use this
+
+git remote add origin https://github.com/mahesh20shashank/osms.git
+git push -u origin master
+
+if error comes then use :
+git fetch origin master:tmp
+git rebase tmp
+git push origin HEAD:master
+git branch -D tmp
+
+
+or use fore command :
+
+
+git push -u --force origin master
+
+
+password is - KUMAR_yadav@123

@@ -1,0 +1,48 @@
+PENDING TASKS :-
+
+1. Implementation of department based search, issue , survey and demand so that a user of a department sees only his department spares.
+Department names are :- Executive, Logistics, Engineering, Electrical , NBCD.  Provision for increasing department must be there in micellaneous page also.
+
+2. Home page to be made completely operational with working graphs and thumbnail data as discussed.
+thumbanails sequence is : recieved , demanded , surveyed , items below 50% in inventory,
+graphs details :- issue , survey , demand , recieved
+
+3. All  Datetime picker used in application must not allow dates to picked after todays date and also relation must be there with issue date.
+Hisotry page also must not allow to select a date before date of first issue made using this application
+
+
+4. Wen we bypass a survey for a spare not in D787 a default entry must be there in remarks column shown in demandlist as survey bypassed and surveynumber as 'NA'
+Also default entry must be there for all consumable spares in surveyno and remarks column of demandlist page as 'NA'.
+
+5. Wen software is closed it must logout automatically and login page should come everytime. Presently, first home page comes and then it logs out.
+
+6.  Edit profile page and Lock Screen page must be made operational/working.
+
+7.  Superuser must be created by default using installer and also profile details of superuser must be taken by installer which are presently done using excel to db,
+
+8. A separate excel to db file which which just perform importing function as per department selected using UI so that data gets appended.
+Redundant data must be ignored and rest can be appended in db.
+
+9. How to deactivate a existing user with login credentials must be added separtely as manage users in navbar for superusers to edit users in their
+department.
+
+10. While issueing the list must show rank firstname and last name of all registered users eligible for issuing spares.
+
+11. Provision for deactivating a user must be there with superuser. Also while creation of a login user after creating its profile , when department
+is selected the username selectbox must filter the personal numbers corresponding to selected department dynamically.
+
+12. Provision of deleting entries created by micellaneous.html in database must be given somewhere so that if a entry is created by mistake by 
+storekeeper it can be deleted at a later date by superuser if required.
+
+13.  Permissions for superuser, storekeeper and normal user must be managed by changes in models so that nomal user can only search , 
+storekeeper can edit only spare location and compartment name. Sueruser to have all rights.
+
+14. On return page the issue list must have status of the issued spare, whether it is surveyed or demaned or pending for receipt onboard
+
+15. On return page , issue list must be order by issuing user name. 
+Similarly on due for demand page group by survey number, and due for receive group by demand number in case 
+we have separate remarks for the same survey or demand number.
+
+16.  username and password textbox should not store history while typing username. No cache must be done by mozilla browser
+
+17.  Login page : username and password not correct error not coming. If username and password is incorrect it must not empty the textbox after error.

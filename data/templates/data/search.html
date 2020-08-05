@@ -1,0 +1,97 @@
+{% extends 'data/base.html' %}
+{% load static %}
+
+{% block pagestyles %}
+{% endblock pagestyles %}
+
+{% block headerpageplugins %}
+<link href="{% static 'assets/global/plugins/select2/css/select2.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/global/plugins/select2/css/select2-bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/layouts/layout5/css/layout.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock headerpageplugins %}
+
+{% block content %}
+<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN SAMPLE FORM PORTLET-->
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-green">
+                            <i class="icon-magnifier font-green"></i>
+                            <span class="caption-subject bold uppercase">Search</span>
+                        </div>
+                        <div class="actions">
+                            <div class="btn-group">
+                                <a class="btn btn-sm default" id="button_cancel">Cancel</a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-sm green" id="button_search">Search</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <form role="form" id="form_search" method="POST" action="{% url 'data:search_result' %}">
+                            {% csrf_token %}
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group form-md-line-input form-md-floating-label">
+                                            {{ form.spare_class }}
+                                            <label class="form_control_1">{{ form.spare_class.label }}</label>
+                                            <span class="help-block">Select the spare type...</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-4">                                        
+                                        <div class="form-group form-md-line-input form-md-floating-label">                                            
+                                            {{ form.equipment_class }}
+                                            <label class="form_control_1">{{ form.equipment_class.label }}</label>
+                                            <span class="help-block">Select the spare class...</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-4">
+                                        <div class="form-group form-md-line-input form-md-floating-label">
+                                            {{ form.pattern_number }}
+                                            <label class="form_control_1">{{ form.pattern_number.label }}</label>
+                                            <span class="help-block">Enter the pattern number of the spare...</span>
+                                        </div>
+                                    </div>
+                                    <br><br><br><br>
+                                    <div class="col-md-12">
+                                        <div class="form-group form-md-line-input form-md-floating-label">
+                                            {{ form.description }}
+                                            <label class="form_control_1">{{ form.description.label }}</label>
+                                            <span class="help-block">Description about the spare...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+                <!-- END SAMPLE FORM PORTLET-->
+            </div>
+        </div>
+{% endblock content %}
+
+{% block footerpageplugins %}
+{% endblock footerpageplugins %}
+
+{% block pagescripts %}
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script>
+    var url_getEquipmentClass = "{% url 'data:equipment_class' %}"; 
+</script>
+<script src="{% static 'data/js/search.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/pages/scripts/form-samples.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/global/plugins/select2/js/select2.full.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/pages/scripts/components-select2.min.js' %}" type="text/javascript"></script>
+                <!-- END PAGE LEVEL PLUGINS -->
+<!-- END PAGE LEVEL SCRIPTS -->
+{% endblock pagescripts %}

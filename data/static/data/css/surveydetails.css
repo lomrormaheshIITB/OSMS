@@ -1,0 +1,12 @@
+.upper{
+    text-transform:uppercase;
+}
+.implabel label {
+    font-weight: bold;
+    color : grey;
+}
+.implabel label::before {
+    color: #e32;
+    content: '* ';
+    display:inline;
+}

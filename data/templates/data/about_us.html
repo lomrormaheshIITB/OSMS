@@ -1,0 +1,138 @@
+{% extends 'data/base.html' %}
+{% load static %}
+
+{% block pagestyles %}
+{% endblock pagestyles %}
+
+{% block headerpageplugins %}
+<link href="{% static 'assets/layouts/layout/css/layout.min.css' %}" rel="stylesheet" type="text/css" />
+<!-- <link href="{% static 'assets/layouts/layout/css/themes/darkblue.min.css' %}" rel="stylesheet" type="text/css" id="style_color" /> -->
+<link href="{% static 'assets/layouts/layout/css/custom.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock headerpageplugins %}
+{% block newplugins %}
+<!-- BEGIN PAGE LEVEL STYLES -->
+
+<link href="{% static 'assets/pages/css/about.min.css' %}" rel="stylesheet" type="text/css" />
+
+<link href="{% static 'data/css/aboutus.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- END PAGE LEVEL STYLES -->
+{% endblock newplugins %}
+{% block content %}
+<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN CONTENT HEADER -->
+        <div class="row margin-bottom-40 about-header">
+            <div class="col-md-12">
+                <h1>About O-SMS</h1>
+                <h2>Purpose of O-SMS is primarily to ensure timely availability of spares at sea</h2>
+                <button type="button" class="btn btn-danger">MEET THE DEVELOPERS</button>
+            </div>
+        </div>
+        <!-- END CONTENT HEADER -->
+
+        <!-- BEGIN TEXT & VIDEO -->
+        <div class="row margin-bottom-40">
+            <div class="col-lg-12">
+                <div class="portlet light about-text">
+                    <h4>
+                        <i class="fa fa-check icon-info"></i> About O-SMS</h4>
+                    <p class="margin-top-20"> This web application was conceptualised by engineering department of
+                        commissioning crew - INS Kochi (Y-12702).
+                        Subsequently, a window based software O-SMS (beta version) was developed by in-house efforts and
+                        it served as backbone of the ship
+                        for the future commissions of the ship. This upgraded version of O-SMS will surely serve a long
+                        way in assisting ship staff in
+                        efficient management of onboard spares(OBS). I would like to mention the names of officers in
+                        engineering department of INS Kochi then :- </p>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <ul class="list-unstyled margin-top-10 margin-bottom-10">
+                                <li>
+                                    <i class="fa fa-check"></i> Engineer Officer - Cdr K A Sureshan </li>
+                                <li>
+                                    <i class="fa fa-check"></i> AEO1 - Lt Cdr Arpit Kumar </li>
+                                <li>
+                                    <i class="fa fa-check"></i> AEO3 - Lt Mahesh Yadav </li>
+
+                            </ul>
+                        </div>
+                        <div class="col-xs-6">
+                            <ul class="list-unstyled margin-top-10 margin-bottom-10">
+                                <li>
+                                    <i class="fa fa-check"></i> Senior Engineer Officer - Lt Cdr Ankush Kaushal</li>
+                                <li>
+                                    <i class="fa fa-check"></i> AEO2 - Lt Cdr Srikant Hari </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="about-quote">
+                        <h3>“One of the great responsibilities that I have is to manage my assets wisely, so that they
+                            create value.”</h3>
+                        <p class="about-author">- Alice Walton</p>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-lg-12">
+                            <iframe src="http://player.vimeo.com/video/22439234" style="width:100%; height:500px;border:0" allowfullscreen> </iframe>
+                        </div> -->
+        </div>
+        <!-- END TEXT & VIDEO -->
+        <!-- BEGIN DEVELOPERS NAME -->
+        <div class="row margin-bottom-40 stories-header" data-auto-height="true">
+            <div class="col-md-12">
+                <h1>Meet the Developers</h1>
+                <h2>Life is either a great adventure or nothing</h2>
+            </div>
+        </div>
+        <div class="row margin-bottom-20 stories-cont">
+            <div class="col-lg-6 col-md-6">
+                <div class="portlet light">
+                    <div class="photo">
+                        <img src="/static/data/img/mahesh.jpg" alt="" class="img-responsive" /> </div>
+                    <div class="title">
+                        <span> Lt Cdr Mahesh Yadav</span>
+                    </div>
+                    <div class="desc">
+                        <span> 43196-Y </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="portlet light">
+                    <div class="photo">
+                        <img src="/static/data/img/shashank.jpg" alt="" class="img-responsive" /> </div>
+                    <div class="title">
+                        <span> Shashank </span>
+                    </div>
+                    <div class="desc">
+                        <span> A brilliant alumini of IIT Bombay of CS Department</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- END CONTENT BODY -->
+</div>
+<!-- END CONTENT -->
+
+
+
+
+
+<!-- END CONTENT -->
+{% endblock content %}
+
+{% block footerpageplugins %}
+{% endblock footerpageplugins %}
+
+{% block pagescripts %}
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+
+<!-- END PAGE LEVEL SCRIPTS -->
+{% endblock pagescripts %}

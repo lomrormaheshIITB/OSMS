@@ -1,0 +1,102 @@
+{% extends 'data/base.html' %}
+{% load static %}
+
+{% block pagestyles %}
+{% endblock pagestyles %}
+
+{% block headerpageplugins %}
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<link href="{% static 'assets/global/plugins/datatables/datatables.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css' %}" rel="stylesheet" type="text/css" />
+<!-- END PAGE LEVEL PLUGINS -->
+{% endblock headerpageplugins %}
+{% block newplugins %}
+<link href="{% static 'data/css/receivelist.css' %}" rel="stylesheet" type="text/css" />
+{% endblock newplugins %}
+{% block content %}
+<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-green">
+                            <i class="icon-list font-green"></i>
+                            <span class="caption-subject bold uppercase" id="table_head">Results</span>
+                        </div>
+                        <div class="tools"> </div>
+                    </div>
+
+                    <div class="portlet-body">
+                      <table class="table table-striped table-bordered table-hover table-header-fixed" id="sample_1">
+                        <thead>
+                            <tr class = "table-columns">
+                                <th class="none">PK</th>
+                                <th class="all">Pattern Number</th>
+                                <th class="min-phone-l">Class of Spare</th>
+                                <th class="min-tablet">Class of Equipment </th>
+                                <th class="none">Spare Description</th>
+                                <th class="none">Quantity to Receive</th>
+                                <th class="none">Demand Number </th>
+                                <th class="none">Demand Remarks </th>
+                            </tr>
+                        </thead>
+                        <tbody id="table_body"></tbody>
+                      </table>
+                    </div>
+                </div>
+                <!-- END EXAMPLE TABLE PORTLET-->
+            </div>
+        </div>
+    </div>
+    <!-- END CONTENT BODY -->
+</div>
+<!-- END CONTENT -->
+{% endblock content %}
+
+{% block footerpageplugins %}
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="{% static 'assets/global/scripts/datatable.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/global/plugins/datatables/datatables.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js' %}" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+{% endblock footerpageplugins %}
+
+{% block pagescripts %}
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+<script>
+     // URL to return page
+     var url_receive = "{% url 'data:receivedetails' %}";
+    // Load the spares into a variable
+    let result = [
+    {% for entry in entries %}
+        {% with spare=entry.spare %}    
+          {% if not forloop.first %}, {% endif %}
+          {
+            pk: '{{ entry.pk }}',
+            pattern_number: '{{ spare.pattern_number }}',
+            spare_class: '{{ spare.spare_class }}',
+            equipment_class: '{{ spare.equipment_class }}',
+            description: '{{ spare.description }}',
+            category: '{{ spare.category }}',
+            critical: '{{ spare.critical }}',
+            quantity_toreceive: '{{ entry.quantity_toreceive }}',
+            demand_number:'{{ entry.demand_entry.demand_number }}',
+            demand_remarks:'{{entry.demand_entry.remarks}}',
+          }
+        {% endwith %}
+        {% endfor %}
+    ];
+</script>
+
+<script src="{% static 'assets/pages/scripts/form-samples.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'data/js/receivelist.js' %}" type="text/javascript"></script>
+<script>
+  LoadTable(true);
+</script>
+<!-- END PAGE LEVEL SCRIPTS -->
+{% endblock pagescripts %}

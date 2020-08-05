@@ -1,0 +1,109 @@
+2020-04-18 15:05:26.206 IST [2170] LOG:  starting PostgreSQL 12.2 (Ubuntu 12.2-2.pgdg18.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0, 64-bit
+2020-04-18 15:05:26.207 IST [2170] LOG:  listening on IPv4 address "127.0.0.1", port 5310
+2020-04-18 15:05:26.538 IST [2170] LOG:  listening on Unix socket "/home/shashankkumar/postgresql/.s.PGSQL.5310"
+2020-04-18 15:05:27.718 IST [2173] LOG:  database system was interrupted; last known up at 2020-04-18 09:33:59 IST
+2020-04-18 15:05:28.612 IST [2173] LOG:  database system was not properly shut down; automatic recovery in progress
+2020-04-18 15:05:28.684 IST [2173] LOG:  redo starts at 0/2A4C8D0
+2020-04-18 15:05:28.684 IST [2173] LOG:  invalid record length at 0/2A4C9B8: wanted 24, got 0
+2020-04-18 15:05:28.684 IST [2173] LOG:  redo done at 0/2A4C980
+2020-04-18 15:05:29.198 IST [2170] LOG:  database system is ready to accept connections
+2020-04-18 19:05:14.229 IST [2199] ERROR:  syntax error at or near "l" at character 1
+2020-04-18 19:05:14.229 IST [2199] STATEMENT:  l
+	delete from data_spares;
+2020-04-18 19:06:31.160 IST [2199] ERROR:  column "data_equipmentclass.id" must appear in the GROUP BY clause or be used in an aggregate function at character 8
+2020-04-18 19:06:31.160 IST [2199] STATEMENT:  select * from data_equipmentclass group by spare_class;
+2020-04-19 17:15:52.073 IST [8681] FATAL:  lock file "postmaster.pid" already exists
+2020-04-19 17:15:52.073 IST [8681] HINT:  Is another postmaster (PID 2170) running in data directory "/home/shashankkumar/postgresql/dbis"?
+2020-04-25 10:57:59.421 IST [17256] ERROR:  syntax error at or near "from" at character 8
+2020-04-25 10:57:59.421 IST [17256] STATEMENT:  update from data_spares set 'critical' = 'false' where 'pattern_number' = 'p1';
+2020-04-25 10:58:05.073 IST [17256] ERROR:  syntax error at or near "'critical'" at character 25
+2020-04-25 10:58:05.073 IST [17256] STATEMENT:  update  data_spares set 'critical' = 'false' where 'pattern_number' = 'p1';
+2020-04-27 22:18:57.647 IST [17256] ERROR:  relation "data_postissue" does not exist at character 13
+2020-04-27 22:18:57.647 IST [17256] STATEMENT:  delete from data_postissue;
+2020-04-27 22:42:59.626 IST [17256] ERROR:  update or delete on table "data_spares" violates foreign key constraint "data_postreceive_spare_id_686663a2_fk_data_spares_id" on table "data_postreceive"
+2020-04-27 22:42:59.626 IST [17256] DETAIL:  Key (id)=(3487) is still referenced from table "data_postreceive".
+2020-04-27 22:42:59.626 IST [17256] STATEMENT:  delete from data_spares;
+2020-04-27 22:43:13.057 IST [17256] ERROR:  update or delete on table "data_spares" violates foreign key constraint "data_return_spare_id_1c5b5b8b_fk_data_spares_id" on table "data_return"
+2020-04-27 22:43:13.057 IST [17256] DETAIL:  Key (id)=(3487) is still referenced from table "data_return".
+2020-04-27 22:43:13.057 IST [17256] STATEMENT:  delete from data_spares;
+2020-04-27 22:43:21.460 IST [17256] ERROR:  update or delete on table "data_spares" violates foreign key constraint "data_receive_spare_id_096fa070_fk_data_spares_id" on table "data_receive"
+2020-04-27 22:43:21.460 IST [17256] DETAIL:  Key (id)=(3487) is still referenced from table "data_receive".
+2020-04-27 22:43:21.460 IST [17256] STATEMENT:  delete from data_spares;
+2020-04-27 22:43:29.754 IST [17256] ERROR:  relation "data_recevie" does not exist at character 13
+2020-04-27 22:43:29.754 IST [17256] STATEMENT:  delete from data_recevie*;
+2020-04-27 23:58:38.673 IST [17256] ERROR:  relation "data_postissue" does not exist at character 15
+2020-04-27 23:58:38.673 IST [17256] STATEMENT:  select * from data_postissue;
+2020-04-30 09:25:42.214 IST [18733] ERROR:  column "pk" does not exist at character 33
+2020-04-30 09:25:42.214 IST [18733] STATEMENT:  select * from data_spares where pk = '3831';
+2020-05-01 08:49:04.823 IST [28123] ERROR:  duplicate key value violates unique constraint "data_spareclass_name_key"
+2020-05-01 08:49:04.823 IST [28123] DETAIL:  Key (name)=(A1) already exists.
+2020-05-01 08:49:04.823 IST [28123] STATEMENT:  INSERT INTO "data_spareclass" ("name") VALUES ('A1') RETURNING "data_spareclass"."id"
+2020-05-05 10:02:53.382 IST [14267] FATAL:  database "postgers" does not exist
+2020-05-05 10:03:05.808 IST [14285] ERROR:  syntax error at or near "datebase" at character 8
+2020-05-05 10:03:05.808 IST [14285] STATEMENT:  delete datebase osms;
+2020-05-05 10:03:44.743 IST [14285] ERROR:  role "lauser" does not exist
+2020-05-05 10:03:44.743 IST [14285] STATEMENT:  grant all on database osms to lauser;
+2020-05-05 14:48:04.143 IST [18134] ERROR:  null value in column "survey_number_date" violates not-null constraint
+2020-05-05 14:48:04.143 IST [18134] DETAIL:  Failing row contains (1, 3, asdf, null, null, asdf, 347, null).
+2020-05-05 14:48:04.143 IST [18134] STATEMENT:  INSERT INTO "data_postsurvey" ("spare_id", "quantity_surveyed", "survey_number", "survey_number_date", "survey_report_date", "remarks") VALUES (347, 3, 'asdf', NULL, NULL, 'asdf') RETURNING "data_postsurvey"."id"
+2020-05-05 15:04:03.242 IST [18881] ERROR:  null value in column "survey_number_date" violates not-null constraint
+2020-05-05 15:04:03.242 IST [18881] DETAIL:  Failing row contains (2, 3, asdf, null, null, , 347, null).
+2020-05-05 15:04:03.242 IST [18881] STATEMENT:  INSERT INTO "data_postsurvey" ("spare_id", "quantity_surveyed", "survey_number", "survey_number_date", "survey_report_date", "remarks") VALUES (347, 3, 'asdf', NULL, NULL, '') RETURNING "data_postsurvey"."id"
+2020-05-05 15:22:50.766 IST [20370] ERROR:  column data_postreceive.receive_date does not exist at character 104
+2020-05-05 15:22:50.766 IST [20370] HINT:  Perhaps you meant to reference the column "data_postreceive.receive_time".
+2020-05-05 15:22:50.766 IST [20370] STATEMENT:  SELECT "data_postreceive"."id", "data_postreceive"."spare_id", "data_postreceive"."quantity_received", "data_postreceive"."receive_date", "data_postreceive"."reference", "data_postreceive"."remarks" FROM "data_postreceive"
+2020-05-05 15:22:50.828 IST [20370] ERROR:  column data_postreceive.receive_date does not exist at character 104
+2020-05-05 15:22:50.828 IST [20370] HINT:  Perhaps you meant to reference the column "data_postreceive.receive_time".
+2020-05-05 15:22:50.828 IST [20370] STATEMENT:  SELECT "data_postreceive"."id", "data_postreceive"."spare_id", "data_postreceive"."quantity_received", "data_postreceive"."receive_date", "data_postreceive"."reference", "data_postreceive"."remarks" FROM "data_postreceive" LIMIT 21
+2020-05-05 15:22:50.829 IST [20370] ERROR:  column data_postreceive.receive_date does not exist at character 104
+2020-05-05 15:22:50.829 IST [20370] HINT:  Perhaps you meant to reference the column "data_postreceive.receive_time".
+2020-05-05 15:22:50.829 IST [20370] STATEMENT:  SELECT "data_postreceive"."id", "data_postreceive"."spare_id", "data_postreceive"."quantity_received", "data_postreceive"."receive_date", "data_postreceive"."reference", "data_postreceive"."remarks" FROM "data_postreceive" LIMIT 21
+2020-05-05 15:22:50.831 IST [20370] ERROR:  column data_postreceive.receive_date does not exist at character 104
+2020-05-05 15:22:50.831 IST [20370] HINT:  Perhaps you meant to reference the column "data_postreceive.receive_time".
+2020-05-05 15:22:50.831 IST [20370] STATEMENT:  SELECT "data_postreceive"."id", "data_postreceive"."spare_id", "data_postreceive"."quantity_received", "data_postreceive"."receive_date", "data_postreceive"."reference", "data_postreceive"."remarks" FROM "data_postreceive" LIMIT 21
+2020-05-06 17:21:13.874 IST [5370] ERROR:  cannot drop table data_spares because other objects depend on it
+2020-05-06 17:21:13.874 IST [5370] DETAIL:  constraint data_issue_spare_id_4654a59d_fk_data_spares_id on table data_issue depends on table data_spares
+	constraint data_survey_spare_id_dec56ee8_fk_data_spares_id on table data_survey depends on table data_spares
+	constraint data_postsurvey_spare_id_f7184cd7_fk_data_spares_id on table data_postsurvey depends on table data_spares
+	constraint data_postreceive_spare_id_686663a2_fk_data_spares_id on table data_postreceive depends on table data_spares
+	constraint data_postdemand_spare_id_1dd0daec_fk_data_spares_id on table data_postdemand depends on table data_spares
+	constraint data_demand_spare_id_d200cbc4_fk_data_spares_id on table data_demand depends on table data_spares
+	constraint data_return_spare_id_1c5b5b8b_fk_data_spares_id on table data_return depends on table data_spares
+	constraint data_receive_spare_id_096fa070_fk_data_spares_id on table data_receive depends on table data_spares
+	constraint data_returnlist_spare_id_d8732fcb_fk_data_spares_id on table data_issuelist depends on table data_spares
+2020-05-06 17:21:13.874 IST [5370] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2020-05-06 17:21:13.874 IST [5370] STATEMENT:  drop table data_spares;
+2020-05-06 17:21:51.626 IST [11445] ERROR:  database "osms" is being accessed by other users
+2020-05-06 17:21:51.626 IST [11445] DETAIL:  There is 1 other session using the database.
+2020-05-06 17:21:51.626 IST [11445] STATEMENT:  drop database osms;
+2020-05-06 17:31:40.281 IST [11463] ERROR:  syntax error at or near "from" at character 6
+2020-05-06 17:31:40.281 IST [11463] STATEMENT:  drop from data_spares;
+2020-05-06 17:31:58.858 IST [11463] ERROR:  relation "data_spare_class" does not exist at character 13
+2020-05-06 17:31:58.858 IST [11463] STATEMENT:  delete from data_spare_class;
+2020-05-06 18:42:16.293 IST [11463] ERROR:  update or delete on table "data_spares" violates foreign key constraint "data_demand_spare_id_d200cbc4_fk_data_spares_id" on table "data_demand"
+2020-05-06 18:42:16.293 IST [11463] DETAIL:  Key (id)=(393) is still referenced from table "data_demand".
+2020-05-06 18:42:16.293 IST [11463] STATEMENT:  delete from data_spares;
+2020-05-24 08:20:25.712 IST [5201] LOG:  starting PostgreSQL 12.3 (Ubuntu 12.3-1.pgdg18.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0, 64-bit
+2020-05-24 08:20:25.713 IST [5201] LOG:  listening on IPv4 address "127.0.0.1", port 5310
+2020-05-24 08:20:26.098 IST [5201] LOG:  listening on Unix socket "/home/shashankkumar/postgresql/.s.PGSQL.5310"
+2020-05-24 08:20:26.971 IST [5204] LOG:  database system was interrupted; last known up at 2020-05-17 17:12:12 IST
+2020-05-24 08:20:27.906 IST [5204] LOG:  database system was not properly shut down; automatic recovery in progress
+2020-05-24 08:20:27.981 IST [5204] LOG:  redo starts at 0/341A8A8
+2020-05-24 08:20:27.981 IST [5204] LOG:  invalid record length at 0/341A990: wanted 24, got 0
+2020-05-24 08:20:27.981 IST [5204] LOG:  redo done at 0/341A958
+2020-05-24 08:20:28.490 IST [5201] LOG:  database system is ready to accept connections
+2020-05-24 08:21:35.351 IST [5312] ERROR:  column data_spares.picturepath does not exist at character 435
+2020-05-24 08:21:35.351 IST [5312] STATEMENT:  (((SELECT "data_spares"."id", "data_spares"."spare_class", "data_spares"."equipment_class", "data_spares"."pattern_number", "data_spares"."description", "data_spares"."category", "data_spares"."critical", "data_spares"."compartment", "data_spares"."location", "data_spares"."denomination", "data_spares"."quantity_authorised", "data_spares"."quantity_available", "data_spares"."authority", "data_spares"."page", "data_spares"."line", "data_spares"."picturepath", "data_spares"."image" FROM "data_spares" WHERE "data_spares"."picturepath"::text LIKE '%.png')) UNION (SELECT "data_spares"."id", "data_spares"."spare_class", "data_spares"."equipment_class", "data_spares"."pattern_number", "data_spares"."description", "data_spares"."category", "data_spares"."critical", "data_spares"."compartment", "data_spares"."location", "data_spares"."denomination", "data_spares"."quantity_authorised", "data_spares"."quantity_available", "data_spares"."authority", "data_spares"."page", "data_spares"."line", "data_spares"."picturepath", "data_spares"."image" FROM "data_spares" WHERE "data_spares"."picturepath"::text LIKE '%.jpg')) UNION (SELECT "data_spares"."id", "data_spares"."spare_class", "data_spares"."equipment_class", "data_spares"."pattern_number", "data_spares"."description", "data_spares"."category", "data_spares"."critical", "data_spares"."compartment", "data_spares"."location", "data_spares"."denomination", "data_spares"."quantity_authorised", "data_spares"."quantity_available", "data_spares"."authority", "data_spares"."page", "data_spares"."line", "data_spares"."picturepath", "data_spares"."image" FROM "data_spares" WHERE "data_spares"."picturepath"::text LIKE '%.jpeg')
+2020-05-24 08:21:35.406 IST [5312] ERROR:  column data_spares.picturepath does not exist at character 435
+2020-05-24 08:21:35.406 IST [5312] STATEMENT:  (((SELECT "data_spares"."id", "data_spares"."spare_class", "data_spares"."equipment_class", "data_spares"."pattern_number", "data_spares"."description", "data_spares"."category", "data_spares"."critical", "data_spares"."compartment", "data_spares"."location", "data_spares"."denomination", "data_spares"."quantity_authorised", "data_spares"."quantity_available", "data_spares"."authority", "data_spares"."page", "data_spares"."line", "data_spares"."picturepath", "data_spares"."image" FROM "data_spares" WHERE "data_spares"."picturepath"::text LIKE '%.png')) UNION (SELECT "data_spares"."id", "data_spares"."spare_class", "data_spares"."equipment_class", "data_spares"."pattern_number", "data_spares"."description", "data_spares"."category", "data_spares"."critical", "data_spares"."compartment", "data_spares"."location", "data_spares"."denomination", "data_spares"."quantity_authorised", "data_spares"."quantity_available", "data_spares"."authority", "data_spares"."page", "data_spares"."line", "data_spares"."picturepath", "data_spares"."image" FROM "data_spares" WHERE "data_spares"."picturepath"::text LIKE '%.jpg')) UNION (SELECT "data_spares"."id", "data_spares"."spare_class", "data_spares"."equipment_class", "data_spares"."pattern_number", "data_spares"."description", "data_spares"."category", "data_spares"."critical", "data_spares"."compartment", "data_spares"."location", "data_spares"."denomination", "data_spares"."quantity_authorised", "data_spares"."quantity_available", "data_spares"."authority", "data_spares"."page", "data_spares"."line", "data_spares"."picturepath", "data_spares"."image" FROM "data_spares" WHERE "data_spares"."picturepath"::text LIKE '%.jpeg') LIMIT 21
+2020-05-24 08:21:35.408 IST [5312] ERROR:  column data_spares.picturepath does not exist at character 435
+2020-05-24 08:21:35.408 IST [5312] STATEMENT:  (((SELECT "data_spares"."id", "data_spares"."spare_class", "data_spares"."equipment_class", "data_spares"."pattern_number", "data_spares"."description", "data_spares"."category", "data_spares"."critical", "data_spares"."compartment", "data_spares"."location", "data_spares"."denomination", "data_spares"."quantity_authorised", "data_spares"."quantity_available", "data_spares"."authority", "data_spares"."page", "data_spares"."line", "data_spares"."picturepath", "data_spares"."image" FROM "data_spares" WHERE "data_spares"."picturepath"::text LIKE '%.png')) UNION (SELECT "data_spares"."id", "data_spares"."spare_class", "data_spares"."equipment_class", "data_spares"."pattern_number", "data_spares"."description", "data_spares"."category", "data_spares"."critical", "data_spares"."compartment", "data_spares"."location", "data_spares"."denomination", "data_spares"."quantity_authorised", "data_spares"."quantity_available", "data_spares"."authority", "data_spares"."page", "data_spares"."line", "data_spares"."picturepath", "data_spares"."image" FROM "data_spares" WHERE "data_spares"."picturepath"::text LIKE '%.jpg')) UNION (SELECT "data_spares"."id", "data_spares"."spare_class", "data_spares"."equipment_class", "data_spares"."pattern_number", "data_spares"."description", "data_spares"."category", "data_spares"."critical", "data_spares"."compartment", "data_spares"."location", "data_spares"."denomination", "data_spares"."quantity_authorised", "data_spares"."quantity_available", "data_spares"."authority", "data_spares"."page", "data_spares"."line", "data_spares"."picturepath", "data_spares"."image" FROM "data_spares" WHERE "data_spares"."picturepath"::text LIKE '%.jpeg') LIMIT 21
+2020-05-24 08:21:35.409 IST [5312] ERROR:  column data_spares.picturepath does not exist at character 435
+2020-05-24 08:21:35.409 IST [5312] STATEMENT:  (((SELECT "data_spares"."id", "data_spares"."spare_class", "data_spares"."equipment_class", "data_spares"."pattern_number", "data_spares"."description", "data_spares"."category", "data_spares"."critical", "data_spares"."compartment", "data_spares"."location", "data_spares"."denomination", "data_spares"."quantity_authorised", "data_spares"."quantity_available", "data_spares"."authority", "data_spares"."page", "data_spares"."line", "data_spares"."picturepath", "data_spares"."image" FROM "data_spares" WHERE "data_spares"."picturepath"::text LIKE '%.png')) UNION (SELECT "data_spares"."id", "data_spares"."spare_class", "data_spares"."equipment_class", "data_spares"."pattern_number", "data_spares"."description", "data_spares"."category", "data_spares"."critical", "data_spares"."compartment", "data_spares"."location", "data_spares"."denomination", "data_spares"."quantity_authorised", "data_spares"."quantity_available", "data_spares"."authority", "data_spares"."page", "data_spares"."line", "data_spares"."picturepath", "data_spares"."image" FROM "data_spares" WHERE "data_spares"."picturepath"::text LIKE '%.jpg')) UNION (SELECT "data_spares"."id", "data_spares"."spare_class", "data_spares"."equipment_class", "data_spares"."pattern_number", "data_spares"."description", "data_spares"."category", "data_spares"."critical", "data_spares"."compartment", "data_spares"."location", "data_spares"."denomination", "data_spares"."quantity_authorised", "data_spares"."quantity_available", "data_spares"."authority", "data_spares"."page", "data_spares"."line", "data_spares"."picturepath", "data_spares"."image" FROM "data_spares" WHERE "data_spares"."picturepath"::text LIKE '%.jpeg') LIMIT 21
+2020-05-24 08:21:35.412 IST [5312] ERROR:  column data_spares.picturepath does not exist at character 435
+2020-05-24 08:21:35.412 IST [5312] STATEMENT:  (((SELECT "data_spares"."id", "data_spares"."spare_class", "data_spares"."equipment_class", "data_spares"."pattern_number", "data_spares"."description", "data_spares"."category", "data_spares"."critical", "data_spares"."compartment", "data_spares"."location", "data_spares"."denomination", "data_spares"."quantity_authorised", "data_spares"."quantity_available", "data_spares"."authority", "data_spares"."page", "data_spares"."line", "data_spares"."picturepath", "data_spares"."image" FROM "data_spares" WHERE "data_spares"."picturepath"::text LIKE '%.png')) UNION (SELECT "data_spares"."id", "data_spares"."spare_class", "data_spares"."equipment_class", "data_spares"."pattern_number", "data_spares"."description", "data_spares"."category", "data_spares"."critical", "data_spares"."compartment", "data_spares"."location", "data_spares"."denomination", "data_spares"."quantity_authorised", "data_spares"."quantity_available", "data_spares"."authority", "data_spares"."page", "data_spares"."line", "data_spares"."picturepath", "data_spares"."image" FROM "data_spares" WHERE "data_spares"."picturepath"::text LIKE '%.jpg')) UNION (SELECT "data_spares"."id", "data_spares"."spare_class", "data_spares"."equipment_class", "data_spares"."pattern_number", "data_spares"."description", "data_spares"."category", "data_spares"."critical", "data_spares"."compartment", "data_spares"."location", "data_spares"."denomination", "data_spares"."quantity_authorised", "data_spares"."quantity_available", "data_spares"."authority", "data_spares"."page", "data_spares"."line", "data_spares"."picturepath", "data_spares"."image" FROM "data_spares" WHERE "data_spares"."picturepath"::text LIKE '%.jpeg') LIMIT 21
+2020-05-24 09:43:08.601 IST [5978] ERROR:  relation "authority" does not exist at character 15
+2020-05-24 09:43:08.601 IST [5978] STATEMENT:  select * from authority
+	;
+2020-05-24 10:11:38.010 IST [5978] ERROR:  relation "data_spare_class" does not exist at character 15
+2020-05-24 10:11:38.010 IST [5978] STATEMENT:  select * from data_spare_class;

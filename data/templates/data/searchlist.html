@@ -1,0 +1,107 @@
+{% extends 'data/base.html' %}
+{% load static %}
+
+{% block pagestyles %}
+{% endblock pagestyles %}
+
+{% block headerpageplugins %}
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<link href="{% static 'assets/global/plugins/datatables/datatables.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- END PAGE LEVEL PLUGINS -->
+{% endblock headerpageplugins %}
+
+{% block newplugins %}
+<link href="{% static 'data/css/searchlist.css' %}" rel="stylesheet" type="text/css" />
+{% endblock newplugins %}
+{% block content %}
+<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-green">
+                            <i class="icon-list font-green"></i>
+                            <span class="caption-subject bold uppercase" id="table_head">Results</span>
+                        </div>
+                        <div class="tools"> </div>
+                    </div>
+                    <div class="portlet-body table-both-scroll">
+                      <table class='table table-bordered  table-striped table-hover  table-header-fixed' id="sample_1">
+                          <thead>
+                              <tr class="table-columns">
+                                <th class="none">PK</th>
+                                <th class="all">Pattern Number</th>
+                                <!-- <th class="min-phone-l">Spare Class</th> -->
+                                <th class="none">Class of Equipment</th>
+                                <th class="min-tablet">Spare Description</th>
+                                <th class="none">Category</th>      
+                                <th class="none">Denomination</th>
+                                <th class="none">Qty Authorised</th>
+                                <th class="none">Qty held</th>
+                                <th class="none">Critical</th>                                 
+                              </tr>
+                          </thead>
+
+                        <tbody id="table_body"></tbody>
+                      </table>
+                    </div>
+                </div>
+                <!-- END EXAMPLE TABLE PORTLET-->
+            </div>
+        </div>
+    </div>
+    <!-- END CONTENT BODY -->
+</div>
+<!-- END CONTENT -->
+{% endblock content %}
+
+{% block footerpageplugins %}
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="{% static 'assets/global/scripts/datatable.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/global/plugins/datatables/datatables.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js' %}" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+{% endblock footerpageplugins %}
+
+{% block pagescripts %}
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+<script>
+    // URL to view spare
+    var url_view = "{% url 'data:view' %}";
+    // Load the spares into a variable
+    let search_result = [
+    {% for spare in spares %}
+      {% if not forloop.first %}, {% endif %}
+      {
+        pk: '{{ spare.pk }}',
+        pattern_number: '{{ spare.pattern_number }}',
+        // spare_class: '{{ spare.spare_class }}',
+        equipment_class: '{{ spare.equipment_class }}',
+        description: '{{ spare.description }}',
+        // compartment: '{{ spare.compartment }}',
+        category: '{{ spare.category }}',
+        
+        denomination:'{{spare.denomination}}',
+        quantity_authorised:'{{spare.quantity_authorised}}',
+        quantity_available:'{{spare.quantity_available}}',
+        critical: '{{ spare.critical }}',
+      }
+    {% endfor %}
+    ];
+</script>
+
+<script src="{% static 'assets/pages/scripts/form-samples.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'data/js/searchlist.js' %}" type="text/javascript"></script>
+
+<script>
+  LoadTable(true);
+</script>
+<!-- END PAGE LEVEL SCRIPTS -->
+{% endblock pagescripts %}

@@ -1,0 +1,10 @@
+In windows machine do all t hese
+-install python
+-pip install wfastcgi
+
+- pip install django 
+
+- wfastcgi-enable
+
+
+url video :- https://youtu.be/CpFU16KrJcQ

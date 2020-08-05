@@ -1,0 +1,23 @@
+.table-columns {
+    background-color:#f7f2e1;
+   
+}
+.table-row{
+    cursor:pointer;    
+    border: 1px solid #cbc2b4;
+    background-color:#f1f5d3;
+    text-align: left;
+    opacity: 0.75;
+ }
+  .table-row:hover{
+    opacity: 1;
+    color: #000;
+    font-weight: bold;
+    background-color:#dededc;
+    font-size:90%;
+    line-height: 40px;
+}
+
+.table-columns th{
+text-align:center;
+}

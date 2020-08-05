@@ -1,0 +1,124 @@
+{% extends 'users/base.html' %}
+{% load static%}
+
+{% block pagestyles %}
+<!-- BEGIN THEME GLOBAL STYLES -->
+<link href="{% static 'assets/global/css/components-md.min.css' %}" rel="stylesheet" id="style_components"
+    type="text/css" />
+<link href="{% static 'assets/global/css/plugins-md.min.css' %}" rel="stylesheet" type="text/css" />
+<!-- END THEME GLOBAL STYLES -->
+
+{% endblock pagestyles %}
+
+{% block headerpageplugins %}
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<link href="{% static 'assets/global/plugins/select2/css/select2.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/global/plugins/select2/css/select2-bootstrap.min.css' %}" rel="stylesheet"
+    type="text/css" />
+<link href="{% static 'users/css/login-3.css' %}" rel="stylesheet" type="text/css" />
+<!-- END PAGE LEVEL STYLES -->
+{% endblock headerpageplugins %}
+
+
+
+
+{% block content %}
+
+
+
+<div class=" login ">
+    <div class="user-login-5">
+        <div class="row bs-reset">
+            <div class="col-md-8 bs-reset">
+                <div class="login-bg">
+                    <a href="{% url 'users:login' %}">
+                        <!-- BEGIN LOGO -->
+                        <img src="/static/myassets/img/newshiplogo.png" alt="" /> </a>
+                    <!-- END LOGO -->
+                </div>
+            </div>
+
+            <div class="col-md-4 login-container bs-reset areafordata">
+
+                <!-- BEGIN LOGIN -->
+                <div class="content">
+                    <!-- BEGIN LOGIN FORM -->
+                    <form  id="login-form" class="login-form" method="post">
+                        {% csrf_token %}
+                        <h3 class="form-title">Login to your account</h3>
+                        <div class="alert alert-danger display-hide">
+                            <button class="close" data-close="alert"></button>
+                            <span> Enter any username and password. </span>
+                        </div>
+
+                        <div class="form-group">
+                            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                            <label class="control-label ">{{form.username.label}}</label>
+                            <div class="input-icon ">
+                                <i class="fa fa-user"></i>
+                                {{ form.username }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label ">{{form.password.label}}</label>
+                            <div class="input-icon">
+                                <i class="fa fa-lock"></i>
+                                {{form.password}}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label ">{{form.department.label}}</label>
+                            <div class="input-icon">
+                                <i class="fa fa-lock"></i>
+                                {{form.department}}
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="form-actions">
+                            <button class="btn green pull-left" type='submit'><i class="fa fa-fw fa-user"></i>Login</button>
+                        </div>
+
+
+                    </form>
+                    <!-- END LOGIN FORM -->
+
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+    <div class="page-footer-inner pull-right">OSMS - &copy; Lt Cdr Mahesh Yadav and Shashank Kumar</div>
+
+</div>
+<!-- END FOOTER -->
+{% endblock content %}
+
+{% block footerpageplugins %}
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+
+<script src="{% static 'assets/global/plugins/jquery-validation/js/jquery.validate.min.js' %}"></script>
+<script src="{% static 'assets/global/plugins/jquery-validation/js/additional-methods.min.js' %}"></script>
+<script src="{% static 'assets/global/plugins/select2/js/select2.full.min.js' %}"></script>
+<script src="{% static 'assets/global/plugins/backstretch/jquery.backstretch.min.js' %}"></script>
+
+
+<!-- END PAGE LEVEL PLUGINS -->
+
+{% endblock footerpageplugins %}
+
+{% block pagescripts %}
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+<script src="{% static 'users/js/login.js' %}"></script>
+
+<!-- END PAGE LEVEL SCRIPTS -->
+{% endblock pagescripts %}
