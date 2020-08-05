@@ -225,6 +225,9 @@ def ManageUserView(request):
 				elif (form_id == '2'):
 					userprofile.user_active = False
 					userprofile.save()
+					user = CustomUser.objects.filter(username=userprofile.personal_number)
+					if (user.count() != 0):
+						user[0].delete()
 					messages.success(request, 'User deleted!')
 			else:
 				messages.error(request, 'Invalid credentials!')
