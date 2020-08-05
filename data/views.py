@@ -31,8 +31,6 @@ def removeSpace(x):
 		return x
 
 
-
-
 # Return all spare_class present in the database
 def GetSpareClass(request):
 	spare_class = list(map(lambda x: x.name, SpareClass.objects.all()))
@@ -56,8 +54,8 @@ def GetEquipmentClass(request, spare_class=None):
 
 
 # Home view
+@login_required
 def HomeView(request):
-	
 	# Render home page
 	template = 'data/home.html'
 	context = {

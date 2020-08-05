@@ -32,7 +32,7 @@ class CustomUserProfile(models.Model):
 	user_active = models.BooleanField(default=True)
 
 class CustomUser(AbstractBaseUser):	
-	username = models.CharField(max_length=100,  unique=True)
+	username = models.CharField(max_length=100, unique=True)
 	user_profile = models.ForeignKey(CustomUserProfile ,on_delete=models.PROTECT)
 	is_active = models.BooleanField(default=True)
 	is_admin = models.BooleanField(default=False)

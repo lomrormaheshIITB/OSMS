@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, JsonResponse
 
 from .models import CustomUser, CustomUserProfile, Rank, Department
-from .forms import CustomUserCreationForm, CustomUserProfileForm , LoginForm ,CustomUserChangePasswordForm, ManageUsersForm
+from .forms import CustomUserCreationForm, CreateProfileForm, EditProfileForm , LoginForm ,ChangePasswordForm, ManageUserForm
 
 
 def LoginView(request):
@@ -53,57 +53,27 @@ def CustomUserSignupView(request):
 	if (request.method == 'POST'):
 		form = CustomUserCreationForm(request.POST)
 		if (form.is_valid()):
-			print(mahesh)			
-			access_level = form.cleaned_data['access_level']
-			print(access_level)
-			department = form.cleaned_data['department']
-					
 			username = form.cleaned_data['username']
-			customuser_entry = CustomUser.objects.filter(username=username)			
-			customuserprofile_entry = CustomUserProfile.objects.filter(personal_number=username)
-			if access_level == '1':
-				if (customuser_entry.count() != 0 ):
-					customuser_entry = customuser_entry[0]					
-					messages.error(request, "Login Credentials corresponding to username " + username + " already exists!")
-					return redirect('users:custom_user_signup')
-				else: 
-					if (customuserprofile_entry.count() != 0 ):
-						customuserprofile_entry = customuserprofile_entry[0]
-						
-						print(department_entry.name)					
-						# Modify the CustomUser Model					
-						# Create a new  entry for username entered
-						CustomUser.objects.create(username=username,access_level=access_level, department=department,user_profile=customuserprofile_entry)
-						messages.success(request, "New Superuser in "+ department + " department with username " + username + " created!")
-						return redirect('users:custom_user_signup')
+			customuser_entry = CustomUser.objects.filter(username=username)	
+			userprofile_entry = CustomUserProfile.objects.filter(personal_number=username)
 
-			elif (access_level == "2"):		
-				if (customuser_entry.count() != 0 ):
-					messages.error(request, "Login Credentials corresponding to this username already exists!")
-					return redirect('users:custom_user_signup')
-				else: 
-					if (customuserprofile_entry.count() != 0 ):
-						customuserprofile_entry = customuserprofile_entry[0]	
-										
-						# Modify the CustomUser Model					
-						# Create a new  entry for username entered
-						CustomUser.objects.create(username=personal_number,access_level=access_level, department=department,user_profile=customuserprofile_entry)
-						messages.success(request, "New Storekeeper in "+ department + " department with username " + username + " created!")
-						return redirect('users:custom_user_signup')
+			# Check if user already exists
+			if (customuser_entry.count() != 0):
+				messages.error(request, "User already exists!")
+			# Check if profile corresponding to the personal_number exists
+			elif (userprofile_entry.count() == 0):
+				messages.error(request, "Profile corresponding to the user does not exist!")
+			# Create user
 			else:
-				if (customuser_entry.count() != 0 ):
-					customuser_entry = customuser_entry[0]
-					messages.error(request, "Login Credentials corresponding to this username already exists!")
-					return redirect('users:custom_user_signup')
-				else: 
-					if (customuserprofile_entry.count() != 0 ):
-						customuserprofile_entry = customuserprofile_entry[0]
-						messages.error(request, "Profile with the personal number " + personal_number + " cannot have Login Credentials as access level chosen is not appropriate")
-						return redirect('users:custom_user_signup')				
+				userprofile_entry = userprofile_entry[0]
+				form = form.save(commit=False)
+				form.user_profile = userprofile_entry
+				form.save()
+				messages.success(request, "User created successfully!")
 		else:
 			messages.error(request, "Form validation failed!")
 	
-	template = 'users/loginuser_creation.html'
+	template = 'users/signup.html'
 	context = {
 		'title': 'O-SMS | Login User Signup-Form',
 		'form': form,
@@ -113,9 +83,9 @@ def CustomUserSignupView(request):
 
 
 def CustomUserProfileCreationView(request):
-	form = CustomUserProfileForm()
+	form = CreateProfileForm()
 	if (request.method == 'POST'):
-		form = CustomUserProfileForm(request.POST)
+		form = CreateProfileForm(request.POST)
 		if (form.is_valid()):
 			personal_number = form.cleaned_data['personal_number'].upper()
 			customuserprofile_entry = CustomUserProfile.objects.filter(personal_number=personal_number)
@@ -130,7 +100,7 @@ def CustomUserProfileCreationView(request):
 		else:
 			messages.error(request, "Form validation failed!")
 	
-	template = 'users/userprofile.html'
+	template = 'users/createprofile.html'
 	context = {
 		'title': 'O-SMS | Profile Creation Form',
 		'form': form,
@@ -152,7 +122,7 @@ def EditProfileView(request):
 			# Process based on the form_id received
 			if (form_id == '1'):
 				# Change profile details
-				form1 = CustomUserProfileForm(request.POST, instance=profile)	
+				form1 = EditProfileForm(request.POST, instance=profile)	
 				if (form1.is_valid()):
 					personal_number = form1.cleaned_data['personal_number']
 					form1.save()
@@ -167,7 +137,7 @@ def EditProfileView(request):
 				
 			elif (form_id == '2'):
 				# Change password
-				form2 = CustomUserChangePasswordForm(request.POST)
+				form2 = ChangePasswordForm(request.POST)
 				if (form2.is_valid()):
 					old_password = form2.cleaned_data['old_password']
 					password1 = form2.cleaned_data['password1']
@@ -188,8 +158,8 @@ def EditProfileView(request):
 		context = {
 			'title': 'OSMS | My Profile',
 			'user': request.user,
-			'form1': CustomUserProfileForm(instance=profile),
-			'form2': CustomUserChangePasswordForm
+			'form1': EditProfileForm(instance=profile),
+			'form2': ChangePasswordForm
 		}
 		return render(request, template, context)
 	else:
@@ -207,21 +177,24 @@ def LockScreenView(request):
 	
 @login_required
 def ManageUserView(request):
-	form = ManageUsersForm()
+	form = ManageUserForm()
 	if (request.method == 'POST'):
-		form = ManageUsersForm(request.POST)
+		form = ManageUserForm(request.POST)
 		if (form.is_valid()):
 			password = form.cleaned_data['password']
 			username = request.user.username
+			# Validate the user
 			user = authenticate(username=username, password=password)
 			if (user is not None):
 				form_id = request.POST.get('form_id')
 				user_id = form.cleaned_data['username']
 				userprofile = CustomUserProfile.objects.get(id=user_id)	
+				# Change access level if form id is 1
 				if (form_id == '1'):
 					userprofile.access_level = form.cleaned_data['access_level']
 					userprofile.save()
 					messages.success(request, 'User access level changed!')
+				# Delete user if form id is 2
 				elif (form_id == '2'):
 					userprofile.user_active = False
 					userprofile.save()
@@ -229,6 +202,7 @@ def ManageUserView(request):
 					if (user.count() != 0):
 						user[0].delete()
 					messages.success(request, 'User deleted!')
+			# Invalid user credentials
 			else:
 				messages.error(request, 'Invalid credentials!')
 		else:
