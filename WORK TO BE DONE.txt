@@ -14,7 +14,7 @@ Hisotry page also must not allow to select a date before date of first issue mad
 4. Wen we bypass a survey for a spare not in D787 a default entry must be there in remarks column shown in demandlist as survey bypassed and surveynumber as 'NA'
 Also default entry must be there for all consumable spares in surveyno and remarks column of demandlist page as 'NA'.
 
-5. Wen software is closed it must logout automatically and login page should come everytime. Presently, first home page comes and then it logs out.
+5. When software is closed it must logout automatically and login page should come everytime. Presently, first home page comes and then it logs out.
 
 6.  Edit profile page and Lock Screen page must be made operational/working.
 
